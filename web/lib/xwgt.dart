@@ -40,27 +40,40 @@ class Weight extends WebComponent {
     m.dispatchEvent(e);
   }
   
+ 
   void changed() {
-    wgt = double.parse(wgtstr, handleError);
-    var temp = wgt*10.round();
-    wgt = temp.round().toDouble()/10;
-    wgtstr = "$wgt";
-    db.open()
-    .then((_) => db.save(wgtstr, WGT_KEY));
-    _updateModel(wgtstr);
+    try {
+      wgt = double.parse(wgtstr);
+      var temp = wgt*10.round();
+      wgt = temp.round().toDouble()/10;
+     
+      temp = wgt - wgt.toInt();
+      wgtstr = temp !=0 ? "$wgt" : "${wgt.toInt()}"; 
+      db.open()
+      .then((_) => db.save(wgtstr, WGT_KEY));
+      _updateModel(wgtstr);
+    } catch(e) {
+      if(wgtstr==""){
+        wgt = 0.0;
+        db.open()
+        .then((_) => db.save(wgtstr, WGT_KEY));
+        _updateModel(wgtstr);
+      } else {
+        db.open()
+        .then((_) => db.exists(WGT_KEY))
+        .then((exists){
+          if(exists) {
+            db.getByKey(WGT_KEY)
+            .then((value){
+              wgtstr = value;
+              wgt = wgtstr!="" ? double.parse(wgtstr) : 0.0;
+            });
+          }
+        });
+      }
+      
+    }
   }
-  
-  double handleError(s){
-    db.open()
-    .then((_) {
-      db.getByKey(WGT_KEY)
-      .then((value){
-        wgtstr = value;
-      });
-    });
-    return double.parse(wgtstr);
-  }
-  
 }
 
 
