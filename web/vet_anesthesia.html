@@ -6,34 +6,9 @@
     <title>Patient Anesthesia Dosage Calculations</title>
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vet_anesthesia.css">
-    <link rel="import" href="lib/xapp.html">
-    
-  </head>
-  <body>
-    <div style="position: fixed; top:0px;">
-    <div  class="ctr">
-      <div id="c">
-        <input id="wgtinput" type="text" placeholder="weight (kg)">
-      </div>
-    </div>
-    <div class="tdiv">
-        <table id="head">
-              <tr class="gh">
-      <td></td>
-      <td colspan="2">Administer (mL)</td>
-    </tr>
-    <tr class="gh">
-      <td></td>
-      <td class="l">Low</td>
-      <td class="h">High</td>
-    </tr>
-        </table>
-     </div>
-    </div>
-    <div class="tdiv">
-          
-            <table id="data"></table>
-        </div>
+    <link rel="import" href="lib/xwgt.html">
+
+    <div id="xwgt" is="x-wgt"></div>
 
     <script type="application/dart" src="vet_anesthesia.dart"></script>
     <script src="packages/browser/dart.js"></script>

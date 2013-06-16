@@ -6,11 +6,11 @@
       <template>
         <style>
           
-          #c {display:inline-block; border: 1px solid gray; border-radius: 15px; }
-          #c input {height:2em; width:6em; margin-top: 1em; margin: 0.3em; border: 0;text-align:center;font-size:2em; }
+          .wgtinput {display:inline-block; border: 2px solid gray; border-radius: 15px;}
+          .wgtinput input {border: 0; text-align:center; font-weight:bold; font-size:2em;width:6em; margin-left:0.2em; margin-right:0.2em;}
         </style>
         
-          <div><div id="c"><input id="wgtinput" type="text" placeholder="weight (kg)" bind-value="wgtstr" on-change="changed()"></div></div>
+          <div class="wgtinput"><input  id="wgtinput" type="text" placeholder="weight (kg)" bind-value="wgtstr" on-change="changed()"></div>
         
       </template>
       <script type="application/dart" src="xwgt.dart"></script>

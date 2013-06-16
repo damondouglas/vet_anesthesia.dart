@@ -32,6 +32,7 @@ class Weight extends WebComponent {
     } else {
       wgt = 0.0;
     }
+     
   }
   
   void changed() {
