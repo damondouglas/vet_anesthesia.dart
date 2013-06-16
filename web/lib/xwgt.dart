@@ -1,3 +1,5 @@
+library xwgt;
+
 import 'package:web_ui/web_ui.dart';
 import 'dart:html';
 import 'package:lawndart/lawndart.dart';
@@ -22,17 +24,20 @@ class Weight extends WebComponent {
           db.getByKey(WGT_KEY)
           .then((value){
             wgtstr = value;
+            wgt = wgtstr!="" ? double.parse(wgtstr) : 0.0;
+            _updateModel(wgtstr);
           });
       } else {
         db.save(wgtstr,WGT_KEY);
       }
     });
-    if(wgtstr!=""){
-      wgt = double.parse(wgtstr);
-    } else {
-      wgt = 0.0;
-    }
-     
+  }
+  
+  void _updateModel(String wgtstr) {
+    InputElement m = query("#model");
+    m.value = wgtstr;
+    Event e = new Event("input");
+    m.dispatchEvent(e);
   }
   
   void changed() {
@@ -42,6 +47,7 @@ class Weight extends WebComponent {
     wgtstr = "$wgt";
     db.open()
     .then((_) => db.save(wgtstr, WGT_KEY));
+    _updateModel(wgtstr);
   }
   
   double handleError(s){
@@ -54,4 +60,7 @@ class Weight extends WebComponent {
     });
     return double.parse(wgtstr);
   }
+  
 }
+
+

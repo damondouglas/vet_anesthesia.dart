@@ -4,12 +4,14 @@
   <head>
     <meta charset="utf-8">
     <title>Patient Anesthesia Dosage Calculations</title>
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vet_anesthesia.css">
+    
     <link rel="import" href="lib/xwgt.html">
 
     <div id="xwgt" is="x-wgt"></div>
-
+    <input style="display:none;" id="model" bind-value="wgtstr">
+    <div>{{wgtstr}}</div>
+    
     <script type="application/dart" src="vet_anesthesia.dart"></script>
     <script src="packages/browser/dart.js"></script>
     <!--<script type="text/javascript" charset="utf-8" src="lib/cordova-2.7.0.js"></script>-->
