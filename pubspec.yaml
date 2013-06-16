@@ -1,0 +1,7 @@
+name: vet_anesthesia
+description: A sample WebUI application
+dependencies:
+  browser: any
+  js: any
+  lawndart: any
+  web_ui: any
