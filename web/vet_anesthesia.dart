@@ -18,14 +18,11 @@ void main() {
     buildstyle();
   });
   
-/*  query("#model").onInput.listen((Event e){
-    print(e.type);
 
-  });*/
-  
-  /*query("#model").onChange.listen((data){
-    print(data);
-  });*/
+  query("#model").onInput.listen((data){
+    var xtable = query("#xtable").xtag;
+    if(xtable != null) xtable.update("#model");
+  });
 }
 
 void buildstyle() {
