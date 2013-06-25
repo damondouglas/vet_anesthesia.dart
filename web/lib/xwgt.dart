@@ -15,7 +15,13 @@ class Weight extends WebComponent {
   String WGT_KEY = "wgt";
   
   void created() {
-    
+    buildstyle();
+    window.onResize.listen((data){
+      buildstyle();
+    });
+    window.onDeviceOrientation.listen((data){
+      buildstyle();
+    });
     db = new IndexedDbStore("vet_anesthesia", 'pt');
     db.open()
     .then((_) => db.exists(WGT_KEY))
@@ -31,6 +37,19 @@ class Weight extends WebComponent {
         db.save(wgtstr,WGT_KEY);
       }
     });
+  }
+  
+  void buildstyle() {
+    int width = 200;
+    int left = ((window.innerWidth - width)/2).toInt();
+    DivElement wgtinput = query(".wgtinput");
+    if(wgtinput!=null){
+      wgtinput.style
+      ..position = "fixed"
+      ..width = "${width}px"
+      ..top = "0"
+      ..left = "${left}px";
+    }
   }
   
   void _updateModel(String wgtstr) {

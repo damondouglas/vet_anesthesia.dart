@@ -8,12 +8,11 @@
     
     <link rel="import" href="lib/xwgt.html">
     <link rel="import" href="lib/xtable.html">
-
+    <div id="container" style="height:2000px;">
     <div id="xwgt" is="x-wgt"></div>
     <input style="display:none;" id="model" bind-value="wgtstr">
-    <div>{{wgtstr}}</div>
     <div id="xtable" is="x-table"></div>
-    
+    </div>
     <script type="application/dart" src="vet_anesthesia.dart"></script>
     <script src="packages/browser/dart.js"></script>
     <!--<script type="text/javascript" charset="utf-8" src="lib/cordova-2.7.0.js"></script>-->
