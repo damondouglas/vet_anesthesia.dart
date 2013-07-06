@@ -3,11 +3,6 @@ import 'dart:html';
 
 class Table extends WebComponent {
 
-  @observable
-  String _wgtstr="";
-  double _wgt = 0.0;
-  int _tablePos = 105;
-  
   Map _medication = 
     {
      "PRE OP":
@@ -55,95 +50,86 @@ class Table extends WebComponent {
        }*/
      }
     };
-  
-  void update(String model){
-    InputElement _model = query("#model");
-    _wgtstr = _model.value;
-    try {
-      _wgt = double.parse(_wgtstr);
-    } catch(e) {
-      _wgt = 0.0;
-    }
-    buildstyle();
-    window.onResize.listen((data){
-      buildstyle();
-    });
-    window.onDeviceOrientation.listen((data){
-      buildstyle();
-    });
-    window.onScroll.listen((data){
-      scroll();
-    });
-  }
-  
-  void _drawTable(){
-    Element tbody = query("#data");
-    _medication.keys.forEach((head){
-      var hd = 
-        """
-          <tr><td class="medhead" colspan="3">$head</td></tr>
-        """;
-      tbody.appendHtml(hd);
-      Map map = _medication[head];
-      map.forEach((med, fmap){
-        String low = fmap["l"](_wgt).toStringAsFixed(2);
-        String high = fmap["h"](_wgt).toStringAsFixed(2);
-        
-        var td = 
-          """
-            <tr>
-              <td>$med</td>
-              <td class="l">$low</td>
-              <td class="h">$high</td>
-            </tr>
-          """;
-          tbody.appendHtml(td);
+  void inserted() {
+    var table = query("div[is='x-table'] table");
+    _medication.keys.forEach((hdr){
+      var tr = new TableRowElement();
+      var td = new TableCellElement();
+      td.colSpan = 3;
+      td.style.fontWeight = "bold";
+      td.style.backgroundColor = "#cecece";
+      td.innerHtml = hdr;
+      tr.append(td);
+      table.append(tr);
+      Map medmap = _medication[hdr];
+      medmap.keys.forEach((String med){
+        tr = new TableRowElement();
+        var medtd = new TableCellElement();
+        var ltd = new TableCellElement();
+        var htd = new TableCellElement();
+        medtd.classes.add("med");
+        ltd.classes.add("l");
+        htd.classes.add("h");
+        medtd.innerHtml = med;
+        tr.id = med.replaceAll(" ", "");
+        tr.append(medtd);
+        tr.append(ltd);
+        tr.append(htd);
+        table.append(tr);    
       });
     });
-  }
-  
-  void buildstyle(){
-    DivElement th = query("#th");
-    int width = 230;
-    int left = ((window.innerWidth - width)/2).toInt();
-    
-    th.style
-    ..position = "fixed"
-    ..width = "${width}px"
-    ..height = "55px"
-    ..top = "50px"
-    ..left = "${left}px";
-    
-    DivElement sp = query("#spacer");
-    sp.style
-    ..position = "fixed"
-    ..height = "90px"
-    ..top = "0"
-    ..left = "${left}px"
-    ..width = "${width}px";
-    
-    TableElement tht = query("#th table");
-    th.style
-    ..position = "fixed"
-    ..width = "${width}px"
-    //..top = "55px"
-    ..left = "${left}px";
-    
-    DivElement tb = query("#tb");
-    tb.style
-    ..position = "fixed"
-    ..width = "${width}px"
-    ..top = "${_tablePos}px"
-    ..left = "${left}px";
+    paint();
+    window.onResize.listen((data){
+      paint();
+    });
     
   }
   
-  void scroll() {
-    var y = window.scrollY;
-    _tablePos = 105 - y;
-    DivElement tb = query("#tb");
-    tb.style.top = "${_tablePos}px";
+  void paint(){
+    var xtable = query("div[is='x-table']");
+    var previous = xtable.previousElementSibling;
+    if(previous != null) {
+      var height = previous.offsetHeight;
+      xtable.style.top = "${height}px";
+    }
+    var windowwidth = window.innerWidth;
+    var width = xtable.offsetWidth;
+    xtable.style.left = "${((windowwidth - width)/2).toInt()}px";
     
+  }
+  
+  void update(String wgtstr) {
+    var table = query("div[is='x-table'] table");
+    var wgt = 
+        wgtstr != "" ?
+          double.parse(wgtstr,(_)=> 0.0)
+        : 0.0;
+    
+    _medication.keys.forEach((hdr){
+      Map medmap = _medication[hdr];
+      medmap.forEach((String med,medfunc){
+        String low = "";
+        String high = "";
+        if(wgt>0) {
+          var l = medfunc["l"](wgt);
+          var h = medfunc["h"](wgt);
+          
+          low = 
+              l - l.toInt() > 0 ?
+                ((l*100).toInt()/100).toString()
+              : l.toInt().toString();
+                
+          high =
+              h - h.toInt() > 0 ?
+                ((h*100).toInt()/100).toString()
+              : h.toInt().toString();
+        }
+        
+        med = med.replaceAll(" ", "");
+        query("#$med .l").innerHtml = low;
+        query("#$med .h").innerHtml = high;
+      });
+    });
   }
 }
 

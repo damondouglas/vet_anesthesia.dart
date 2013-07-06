@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+  <body>
+    <element name="x-medsafeinput" constructor="MedSafeInput" extends="div">
+      <template>
+        <style scoped>
+          div[is='x-medsafeinput'] {
+            position:fixed;
+            top: 4px;
+            display:inline-block; 
+            border: 2px solid grey; 
+            border-radius: 15px; 
+            /*z-index:5;*/ 
+            /*background-color: white; */
+          }
+          div[is='x-medsafeinput'] input {
+            border: 0; 
+            text-align: center; 
+            font-weight: bold; 
+            font-size: 2em;
+            width: 6em; 
+            margin-left:0.5em; 
+            margin-right:0.5em;
+          }
+        </style>
+        <input type="text" placeholder="{{placeholder}}" bind-value="inputstr" on-change="changed()">
+      </template>
+      <script type="application/dart" src="xmedsafeinput.dart"></script>
+    </element>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+        <link rel="import" href="xmedsafeinput.html">
+  </head>
+  <body>
+    <element name="x-header" constructor="Header" extends="div">
+      <template>
+        <style scoped>
+          div[is='x-header'] {
+            position:fixed;
+            top:0px;
+            left:0px;
+            height:200px;
+            width:100px;
+            background-color:white;
+            border-bottom: 1px solid black;
+          }
+          div[is='x-header'] table {
+            position:fixed;
+            font-weight: bold;
+          }
+        </style>
+        <x-medsafeinput placeholder="Weight (kg)" precision="{{precision}}" store="vet_anesthesia.pt.wgt" on-change="changed()" modelid="model"></x-medsafeinput>
+        <table>
+          <tr>
+            <td></td>
+            <td colspan="2">Administer (mL)</td>
+          </tr>
+          <tr>
+              <td class="med"></td>
+              <td class="l">Low</td>
+              <td class="h">High</td>
+          </tr>
+        </table>
+      </template>
+      <script type="application/dart" src="xheader.dart"></script>
+    </element>
+  </body>
+</html>

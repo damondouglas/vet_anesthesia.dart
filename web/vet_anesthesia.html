@@ -5,17 +5,16 @@
     <meta charset="utf-8">
     <title>Patient Anesthesia Dosage Calculations</title>
     <link rel="stylesheet" href="vet_anesthesia.css">
-    
-    <link rel="import" href="lib/xwgt.html">
+    <link rel="import" href="lib/xheader.html">
     <link rel="import" href="lib/xtable.html">
-    <div id="container" style="height:2000px;">
-    <div id="xwgt" is="x-wgt"></div>
-    <input style="display:none;" id="model" bind-value="wgtstr">
-    <div id="xtable" is="x-table"></div>
-    </div>
-    <script type="application/dart" src="vet_anesthesia.dart"></script>
-    <script src="packages/browser/dart.js"></script>
-    <!--<script type="text/javascript" charset="utf-8" src="lib/cordova-2.7.0.js"></script>-->
-    
+  </head>  
+  <x-header></x-header>
+  <x-table></x-table>
+  <div style="display:hidden;"><input id="model"></div>
+  <!--<input id="model" bind-value="wgtstr">
+  <div style="positon:relative; top:300px;">value: {{wgtstr}}</div>-->
+  <script type="application/dart" src="vet_anesthesia.dart"></script>
+  <script src="packages/browser/dart.js"></script>
+  <!--<script type="text/javascript" charset="utf-8" src="lib/cordova-2.7.0.js"></script>-->
   </body>
 </html>
