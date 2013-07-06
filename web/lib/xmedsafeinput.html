@@ -23,8 +23,16 @@
             margin-left:0.5em; 
             margin-right:0.5em;
           }
+          
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+              /* display: none; <- Crashes Chrome on hover */
+              -webkit-appearance: none;
+              margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+          }
+          
         </style>
-        <input type="text" placeholder="{{placeholder}}" bind-value="inputstr" on-change="changed()">
+        <input type="number" placeholder="{{placeholder}}" bind-value="inputstr" on-change="changed()">
       </template>
       <script type="application/dart" src="xmedsafeinput.dart"></script>
     </element>
