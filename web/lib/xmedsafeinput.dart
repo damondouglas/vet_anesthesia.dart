@@ -11,9 +11,9 @@ class MedSafeInput extends WebComponent {
   double inputval = 0.0;
   @observable
   String inputstr = "";
-  String placeholder = "";
+  String placeholder = "Weight (kg)";
   int precision = -1;
-  String store = "";
+  String store = "vet_anesthesia.pt.wgt";
   IndexedDbStore db;
   String storeKey = "";
   String modelid = "";
