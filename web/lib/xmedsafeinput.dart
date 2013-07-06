@@ -14,7 +14,7 @@ class MedSafeInput extends WebComponent {
   String placeholder = "Weight (kg)";
   int precision = -1;
   String store = "vet_anesthesia.pt.wgt";
-  IndexedDbStore db;
+  Store db;
   String storeKey = "";
   String modelid = "";
   
@@ -27,7 +27,7 @@ class MedSafeInput extends WebComponent {
     
     if(store!=""){
       var storedtl = store.split(".");
-      db = new IndexedDbStore(storedtl[0],storedtl[1]);
+      db = new Store(storedtl[0],storedtl[1]);
       storeKey = storedtl[2];
       db.open().then((_){
         db.exists(storeKey).then((exists){
