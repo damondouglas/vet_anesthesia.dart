@@ -1,5 +1,6 @@
 import 'package:web_ui/web_ui.dart';
 import 'dart:html';
+import 'dart:math';
 
 class Table extends WebComponent {
   @observable
@@ -21,8 +22,8 @@ class Table extends WebComponent {
        },
        "Acepromazine":
        {
-         "l":_dosebased(0.05,1.0),
-         "h":_flatbased(1.5)
+         "l":_dosebased(0.05,1.0,maxdose:1.5),
+         "h":_dosebased(0.05,1.0,maxdose:1.5)
        },
        "Midazolam 1":
        {
@@ -243,9 +244,13 @@ class Table extends WebComponent {
   }
 }
 
-Function _dosebased(double dose, double concentration) {
+Function _dosebased(double dose, double concentration, {double maxdose}) {
   return (wgt){
-    return wgt*dose/concentration;
+    if(?maxdose) {
+      return min(maxdose/concentration, wgt*dose/concentration);
+    } else {
+      return wgt*dose/concentration;
+    }
   };
 }
 
