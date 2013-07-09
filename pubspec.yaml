@@ -2,5 +2,6 @@ name: vet_anesthesia
 description: A sample WebUI application
 dependencies:
   browser: any
+  hop: any
   lawndart: any
   web_ui: any
