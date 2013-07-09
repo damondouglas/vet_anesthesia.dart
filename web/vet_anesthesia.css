@@ -1,20 +1,5 @@
-body {
-  font-family: Roboto, arial, sans-serif;
-  }
-
-.med {
-  width:160px;
-}
-
-.l, .h {
-  width: 60px;
-}
-
-.l {
-  color:blue;  
-}
-  
-.h {
-  color:red;
-}
-
+body { font-family: Roboto, arial, sans-serif; }
+.med { width:160px; }
+.l, .h { width: 60px; }
+.l { color:blue; }
+.h { color:red; }
