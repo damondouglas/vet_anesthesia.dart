@@ -17,7 +17,7 @@ PASSING=0
 ####
 # test files one at a time
 #
-for file in lib/*.dart
+for file in web/lib/*.dart
 do
   results=`$ANA $file 2>&1`
   exit_code=$?
