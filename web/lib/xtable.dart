@@ -246,7 +246,7 @@ class Table extends WebComponent {
 
 Function _dosebased(double dose, double concentration, {double maxdose}) {
   return (wgt){
-    if(?maxdose) {
+    if(maxdose!=null) {
       return min(maxdose/concentration, wgt*dose/concentration);
     } else {
       return wgt*dose/concentration;
