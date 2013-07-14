@@ -83,15 +83,15 @@ class Table extends WebComponent {
      },
      "IVF":
      {
-       "CAT 1st hour":
-       {
-       "l":_dosebased(5.0,1.0),
-       "h":_dosebased(5.0,1.0)
-       },
        "DOG 1st hour":
        {
        "l":_dosebased(10.0,1.0),
        "h":_dosebased(10.0,1.0)
+       },
+       "CAT 1st hour":
+       {
+       "l":_dosebased(5.0,1.0),
+       "h":_dosebased(5.0,1.0)
        }
      },
      "BLOCK":
@@ -128,16 +128,16 @@ class Table extends WebComponent {
        {
        "l":_dosebased(0.1,1.0),
        "h":_dosebased(0.2,1.0)
+       },       
+       "Lidocaine DOG":
+       {
+       "l":_dosebased(2.0,20.0),
+       "h":_dosebased(4.0,20.0)
        },
        "Lidocaine CAT":
        {
        "l":_dosebased(0.25,20.0),
        "h":_dosebased(0.5,20.0)
-       },
-       "Lidocaine DOG":
-       {
-       "l":_dosebased(2.0,20.0),
-       "h":_dosebased(4.0,20.0)
        },
        "Ephedrine":
        {
